@@ -13,17 +13,25 @@
 // @run-at       document-start
 // ==/UserScript==
 
-(function() {
+(function () {
 
     console.log("Starting Script [DIO Bypass Propaganda]")
-    const videoSrc1 = "https://www.youtube.com/embed/VMnr_7Nw-UA";
-    const videoSrc2 = "https://www.youtube.com/embed/cXigtBtYP0E";
+    const videoSrc = [
+        "https://www.youtube.com/embed/VMnr_7Nw-UA",
+        "https://www.youtube.com/embed/cXigtBtYP0E"
+    ];
+
 
     const interval = setInterval(() => {
 
         const iframe = document.querySelector('iframe[src*="youtube"]');
+
+        let isSrcFound = false
         try {
-            if (iframe && (iframe.src.includes(videoSrc1) || iframe.src.includes(videoSrc2))) {
+            for (let link of videoSrc) {
+                isSrcFound = iframe.src.includes(link)
+            }
+            if (iframe && isSrcFound) {
                 console.log("Video Found");
 
                 iframe.contentWindow.postMessage(JSON.stringify({
@@ -34,8 +42,8 @@
 
                 console.log("Bypass");
             }
-        } catch(err) {
-            console.log(err)
+        } catch (err) {
+            //console.log(err)
         }
 
     }, 1000); // verifica a cada 1 segundo
