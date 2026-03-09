@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DIO Bypass Propaganda
 // @namespace    http://tampermonkey.net/
-// @version      1.0.1
+// @version      1.0.2
 // @description  Remove video Ad inicial quando abre um video de bootcamp no DIO Free
 // @author       DenisDSS
 // @updateURL    https://github.com/denisdss/DIO-Ad-Bypass/raw/refs/heads/main/DIO-Ad-Bypass.user.js
@@ -15,7 +15,7 @@
 
 (function () {
 
-    console.log("Starting Script [DIO Bypass Propaganda]")
+    console.log("Starting Script [DIO Bypass Propaganda] by DenisDSS")
     const videoSrc = [
         "https://www.youtube.com/embed/VMnr_7Nw-UA",
         "https://www.youtube.com/embed/cXigtBtYP0E"
