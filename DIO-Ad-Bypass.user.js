@@ -4,8 +4,8 @@
 // @version      1.0.0
 // @description  Remove video Ad inicial quando abre um video de bootcamp no DIO Free
 // @author       DenisDSS
-// @updateURL    https://github.com/denisdss/DIO-Ad-Bypass/blob/main/DIO-Ad-Bypass.user.js
-// @downloadURL  https://github.com/denisdss/DIO-Ad-Bypass/blob/main/DIO-Ad-Bypass.user.js
+// @updateURL    https://github.com/denisdss/DIO-Ad-Bypass/raw/refs/heads/main/DIO-Ad-Bypass.user.js
+// @downloadURL  https://github.com/denisdss/DIO-Ad-Bypass/raw/refs/heads/main/DIO-Ad-Bypass.user.js
 // @supportURL   https://github.com/denisdss/DIO-Ad-Bypass/issues
 // @match        https://web.dio.me/track/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=dio.me
