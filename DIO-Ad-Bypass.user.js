@@ -16,7 +16,7 @@
 (function () {
 
     console.log("Starting Script [DIO Ad Bypass]")
-    const videoSrc = [
+    const links = [
         "https://www.youtube.com/embed/VMnr_7Nw-UA",
         "https://www.youtube.com/embed/cXigtBtYP0E"
     ];
@@ -28,7 +28,7 @@
 
         let isSrcFound = false
         try {
-            for (let link of videoSrc) {
+            for (let link of links) {
                 isSrcFound = iframe.src.includes(link)
                 if (isSrcFound) break
             }
