@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DIO Ad Bypass
 // @namespace    http://tampermonkey.net/
-// @version      1.0.6
+// @version      1.0.7
 // @description  Remove video Ad inicial quando abre um video de bootcamp no DIO Free
 // @author       DenisDSS
 // @updateURL    https://github.com/denisdss/DIO-Ad-Bypass/raw/refs/heads/main/DIO-Ad-Bypass.user.js
@@ -27,11 +27,15 @@
         const iframe = document.querySelector('iframe[src*="youtube"]');
 
         function send(cmd, args = []) {
-            iframe.contentWindow.postMessage(JSON.stringify({
-                event: "command",
-                func: cmd,
-                args: args
-            }), "*");
+            try {
+                iframe.contentWindow.postMessage(JSON.stringify({
+                    event: "command",
+                    func: cmd,
+                    args: args
+                }), "*");
+            } catch (err) {
+                //console.log(err)
+            }
         }
 
         let isSrcFound = false
