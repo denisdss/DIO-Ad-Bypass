@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DIO Ad Bypass
 // @namespace    http://tampermonkey.net/
-// @version      1.0.4
+// @version      1.0.5
 // @description  Remove video Ad inicial quando abre um video de bootcamp no DIO Free
 // @author       DenisDSS
 // @updateURL    https://github.com/denisdss/DIO-Ad-Bypass/raw/refs/heads/main/DIO-Ad-Bypass.user.js
@@ -26,6 +26,14 @@
 
         const iframe = document.querySelector('iframe[src*="youtube"]');
 
+        function send(cmd, args = []) {
+            iframe.contentWindow.postMessage(JSON.stringify({
+                event: "command",
+                func: cmd,
+                args: args
+            }), "*");
+        }
+
         let isSrcFound = false
         try {
             for (let link of links) {
@@ -35,11 +43,32 @@
             if (iframe && isSrcFound) {
                 console.log("Video Found");
 
-                iframe.contentWindow.postMessage(JSON.stringify({
-                    event: "command",
-                    func: "seekTo",
-                    args: [9999, true]
-                }), "*");
+                send("playVideo");
+
+                const interval = setInterval(() => {
+
+                    send("getDuration");
+
+                }, 1000);
+
+                window.addEventListener("message", function (e) {
+
+                    if (typeof e.data !== "string") return;
+
+                    let data;
+                    try { data = JSON.parse(e.data); } catch { return; }
+
+                    if (data.info && data.info.duration) {
+
+                        send("seekTo", [data.info.duration - 1, true]);
+                        send("pauseVideo");
+
+                        clearInterval(interval);
+
+                        console.log("Vídeo pulado automaticamente");
+                    }
+
+                });
 
                 console.log("Bypass");
             }
@@ -47,7 +76,7 @@
             //console.log(err)
         }
 
-    }, 1000); // verifica a cada 1 segundo
+    }, 2000); // intervalo de verificacao
 
 
 })();
